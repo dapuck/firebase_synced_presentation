@@ -37,11 +37,14 @@
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
         firebase.auth().signInWithEmailAndPassword(email,password)
+        .then(function(user) {
+            fireAuthState(user);
+            startReveal(); 
+        })
         .catch(function(error) {
             console.log(error);
             alert("Issue with login");
         });
-        startReveal();
     }
 
     function fireAuthState(user) {
